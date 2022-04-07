@@ -35,7 +35,8 @@ namespace BookStoreAPI.Controllers
             try
             {
                 GetBookByIdQuery query = new GetBookByIdQuery(_context);
-                var result = query.Handle(id);
+                query._bookId = id;
+                var result = query.Handle();
                 return Ok(result);
             }
             catch (Exception e)
@@ -65,8 +66,9 @@ namespace BookStoreAPI.Controllers
             try
             {
                 UpdateBookCommand command = new UpdateBookCommand(_context);
+                command._bookId = id;
                 command.Model = updatebook;
-                command.Handle(id);
+                command.Handle();
             }
             catch (Exception e)
             {

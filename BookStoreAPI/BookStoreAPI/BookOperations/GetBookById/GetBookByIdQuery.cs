@@ -8,15 +8,15 @@ namespace BookStoreAPI.BookOperations.GetBookById
     public class GetBookByIdQuery
     {
         private readonly BookStoreDbContext _context;
-
+        public int _bookId { get; set; }
         public GetBookByIdQuery(BookStoreDbContext context)
         {
             _context = context;
         }
 
-        public BookViewModel Handle(int id)
+        public BookViewModel Handle()
         {
-            var book = _context.Books.First(x => x.Id == id);
+            var book = _context.Books.First(x => x.Id == _bookId);
             if (book == null)
             {
                 throw new ArgumentNullException("Kitap bulunamadı");

@@ -8,7 +8,7 @@ namespace BookStoreAPI.BookOperations.UpdateBook
     {
     
         private readonly BookStoreDbContext _context;
-
+        public int _bookId { get; set; }
         public UpdateBookModel Model { get; set; }
 
         public UpdateBookCommand(BookStoreDbContext context)
@@ -16,9 +16,9 @@ namespace BookStoreAPI.BookOperations.UpdateBook
             _context = context;
         }
 
-        public void Handle(int id)
+        public void Handle()
         {
-            var book = _context.Books.SingleOrDefault(x => x.Id == id);
+            var book = _context.Books.SingleOrDefault(x => x.Id ==_bookId);
             if (book is not null)
             {
                 book.Title = Model.Title;
