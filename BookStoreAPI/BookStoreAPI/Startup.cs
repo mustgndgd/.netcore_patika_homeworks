@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using BookStoreAPI.DbOperations;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,7 @@ namespace BookStoreAPI
             });
 
             services.AddDbContext<BookStoreDbContext>(option => option.UseInMemoryDatabase("BookStoreDb"));
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
         }
 

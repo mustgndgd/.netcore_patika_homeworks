@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using AutoMapper;
 using BookStoreAPI.BookOperations.CreateBook;
 using BookStoreAPI.BookOperations.GetBookById;
 using BookStoreAPI.BookOperations.GetBooks;
@@ -15,16 +16,17 @@ namespace BookStoreAPI.Controllers
     public class BookController : ControllerBase
     {
         private readonly BookStoreDbContext _context;
-
-        public BookController(BookStoreDbContext context)
+        private readonly IMapper _mapper;
+        public BookController(BookStoreDbContext context,IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetBooks()
         {
-            GetBooksQuery query = new GetBooksQuery(_context);
+            GetBooksQuery query = new GetBooksQuery(_context, _mapper);
             var result = query.Handle();
             return Ok(result);
         }
@@ -34,7 +36,7 @@ namespace BookStoreAPI.Controllers
         {
             try
             {
-                GetBookByIdQuery query = new GetBookByIdQuery(_context);
+                GetBookByIdQuery query = new GetBookByIdQuery(_context,_mapper);
                 query._bookId = id;
                 var result = query.Handle();
                 return Ok(result);
@@ -44,12 +46,14 @@ namespace BookStoreAPI.Controllers
                 return BadRequest(e.Message);
             }
         }
+       
+       
         [HttpPost]
         public IActionResult AddBook([FromBody] CreateBookModel book)
         {
             try
             {
-                CreateBookCommand command = new CreateBookCommand(_context);
+                CreateBookCommand command = new CreateBookCommand(_context,_mapper);
                 command.Model = book;
                 command.Handle();
                 return Ok();
@@ -60,6 +64,8 @@ namespace BookStoreAPI.Controllers
             }
            
         }
+       
+       
         [HttpPut("{id}")]
         public IActionResult UpdateBook(int id, [FromBody] UpdateBookModel updatebook)
         {
@@ -76,6 +82,8 @@ namespace BookStoreAPI.Controllers
             }
             return Ok();
         }
+      
+        
         [HttpDelete("{id}")]
         public IActionResult DeleteBook(int id)
         {
