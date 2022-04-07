@@ -1290,11 +1290,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\Mac\\Home\\Desktop\\windows_folders\\netcore_patika_ödevleri\\ödevler\\.netcore_patika_homeworks\\BookStoreAPI\\BookStoreAPI\\BookStoreAPI.csproj",
+      "projectUniqueName": "\\\\Mac\\Home\\Desktop\\windows_folders\\netcore_patika_ödevleri\\ödevler\\netcore_patika_homeworks\\BookStoreAPI\\BookStoreAPI\\BookStoreAPI.csproj",
       "projectName": "BookStoreAPI",
-      "projectPath": "\\\\Mac\\Home\\Desktop\\windows_folders\\netcore_patika_ödevleri\\ödevler\\.netcore_patika_homeworks\\BookStoreAPI\\BookStoreAPI\\BookStoreAPI.csproj",
+      "projectPath": "\\\\Mac\\Home\\Desktop\\windows_folders\\netcore_patika_ödevleri\\ödevler\\netcore_patika_homeworks\\BookStoreAPI\\BookStoreAPI\\BookStoreAPI.csproj",
       "packagesPath": "C:\\Users\\mustafagundogdu\\.nuget\\packages\\",
-      "outputPath": "\\\\Mac\\Home\\Desktop\\windows_folders\\netcore_patika_ödevleri\\ödevler\\.netcore_patika_homeworks\\BookStoreAPI\\BookStoreAPI\\obj\\",
+      "outputPath": "\\\\Mac\\Home\\Desktop\\windows_folders\\netcore_patika_ödevleri\\ödevler\\netcore_patika_homeworks\\BookStoreAPI\\BookStoreAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mustafagundogdu\\AppData\\Roaming\\NuGet\\NuGet.Config",

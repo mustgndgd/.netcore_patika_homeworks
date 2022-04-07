@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oUFGqVk953U94hwwXfgMtM66mRcpqeHuvSbHKQZlK2dMmusytlpwN5/f5x5Kr6+iqhyDv4Urn/94KhUNnRiGGw==",
+  "dgSpecHash": "6Hp/O7POqFMSA1jLXmYfqZhpva8BjAfRhP8xG63ra64lEx07UEFfyLNd4Zzsre1WqZ3WRDE2ld5U8/FCjRG/RA==",
   "success": true,
-  "projectFilePath": "\\\\Mac\\Home\\Desktop\\windows_folders\\netcore_patika_ödevleri\\ödevler\\.netcore_patika_homeworks\\BookStoreAPI\\BookStoreAPI\\BookStoreAPI.csproj",
+  "projectFilePath": "\\\\Mac\\Home\\Desktop\\windows_folders\\netcore_patika_ödevleri\\ödevler\\netcore_patika_homeworks\\BookStoreAPI\\BookStoreAPI\\BookStoreAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mustafagundogdu\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\mustafagundogdu\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
