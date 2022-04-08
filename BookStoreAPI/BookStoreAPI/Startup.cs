@@ -11,9 +11,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using BookStoreAPI.DbOperations;
+using BookStoreAPI.Middlewares;
+using BookStoreAPI.Services;
+using BookStoreWebApi.DBOperations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BookStoreAPI
 {
@@ -29,6 +35,20 @@ namespace BookStoreAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(option =>
+            {
+                option.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = true,
+                    ValidateIssuer = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Token:Issuer"],
+                    ValidAudience = Configuration["Token:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:SecurityKey"])),
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -36,9 +56,10 @@ namespace BookStoreAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookStoreAPI", Version = "v1" });
             });
 
-            services.AddDbContext<BookStoreDbContext>(option => option.UseInMemoryDatabase("BookStoreDb"));
+            services.AddDbContext<BookStoreDbContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
+            services.AddScoped<IBookStoreDbContext>(provider => provider.GetService<BookStoreDbContext>());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
+            services.AddSingleton<ILoggerService, DBLogger>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +76,11 @@ namespace BookStoreAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.UseCustomExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {

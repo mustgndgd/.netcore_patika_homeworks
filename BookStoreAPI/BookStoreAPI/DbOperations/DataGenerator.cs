@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using BookStoreAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,7 +16,13 @@ namespace BookStoreAPI.DbOperations
                 {
                     return;
                 }
+                context.Genres.AddRange
+                    (
+                        new Genre { Name = "Personal / Growth" },
+                        new Genre { Name = "Science Fiction" },
+                        new Genre { Name = "Romance" }
 
+                    );
                 context.Books.AddRange
                 (
                     new Book
@@ -42,7 +49,7 @@ namespace BookStoreAPI.DbOperations
                     }
                 );
                 context.SaveChanges();
-                
+
             }
         }
     }
